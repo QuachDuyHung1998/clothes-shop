@@ -23,7 +23,7 @@
                                 <span class="txt">{{ Session::get('lang') == 'vi' ? __('Vietnamese') : __('English') }}</span>
                             @else
                                 <span class="txt">{{ __('Vietnamese') }}</span>
-                            @endif                            
+                            @endif
                             <span class="arrow fa fa-angle-down"></span>
                         </div>
                         <div class="lang-dropdown">

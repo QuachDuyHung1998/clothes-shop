@@ -10,4 +10,10 @@ interface ProductRepositoryInterface
      * @return mixin
      */
     public function getProductFromArrCategory($arrCategoryId);
+
+    /**
+     * get all product with paginate = 20
+     * @return mixin
+     */
+    public function getAll();
 }

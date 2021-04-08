@@ -15,6 +15,7 @@ class Product extends Model
         "name",
         "slug",
         "description",
+        "detail",
         "image",
         "price",
         "price_discount",

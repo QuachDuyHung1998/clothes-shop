@@ -19,4 +19,9 @@ class ProductRepository extends BaseRepository implements ProductRepositoryInter
             ->orderBy('id', 'desc')
             ->get();
     }
+
+    public function getAll()
+    {
+        return $this->model->orderBy('id', 'desc')->paginate(15);
+    }
 }

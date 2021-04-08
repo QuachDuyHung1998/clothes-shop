@@ -49,7 +49,7 @@ abstract class BaseRepository implements BaseRepositoryInterface
     {
         $result = $this->find($id);
         if ($result) {
-            $result->update($attributes);
+            $result->first()->update($attributes);
             return $result;
         }
 

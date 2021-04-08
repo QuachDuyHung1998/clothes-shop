@@ -1,8 +1,11 @@
 @extends('admin.layouts.main')
 
 @section('title', 'Dashboard')
-    
-@push('head')
+
+@push('css')
+    <link rel="stylesheet" type="text/css" href="{{ asset('app-assets/css/pages/dashboard-ecommerce.min.css') }}">
+@endpush
+@push('js')
     <script src="{{ asset('app-assets/js/scripts/pages/dashboard-ecommerce.js') }}"></script>
 @endpush
 

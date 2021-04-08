@@ -1,7 +1,9 @@
 <?php
 
+use App\Http\Controllers\Admin\AjaxController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\Auth\RegisterController;
@@ -40,8 +42,32 @@ Route::prefix('admin')->group(function () {
         Route::name('admin.')->group(function () {
             Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
+            // ajax
+            Route::prefix('ajax')->group(function () {
+                Route::post('clear-cache', [AjaxController::class, 'clearCache']);
+                // category
+                Route::post('update-status-category', [AjaxController::class, 'updateStatusCategory']);
+                Route::get('new-category', [AjaxController::class, 'viewNewCategory'])->name('ajax.new_category');
+                Route::post('new-category', [AjaxController::class, 'newCategory']);
+                Route::get('edit-category/{id}', [AjaxController::class, 'viewEditCategory'])->name('ajax.edit_category');
+                Route::post('edit-category', [AjaxController::class, 'editCategory']);
+            });
+
             // category
-            Route::get('/categories', [CategoryController::class, 'index'])->name('category');
+            Route::prefix('categories')->group(function () {
+                Route::get('/', [CategoryController::class, 'index'])->name('category');
+                Route::get('/delete/{id}', [CategoryController::class, 'destroy'])->name('category.delete');
+            });
+
+            // product
+            Route::prefix('products')->group(function () {
+                Route::get('/', [ProductController::class, 'index'])->name('product');
+                Route::get('/create', [ProductController::class, 'create'])->name('product.create');
+                Route::post('/create', [ProductController::class, 'store']);
+                Route::get('/edit', [ProductController::class, 'edit'])->name('product.edit');
+                Route::post('/edit', [ProductController::class, 'update']);
+                Route::get('/delete/{id}', [ProductController::class, 'destroy'])->name('product.delete');
+            });
         });
     });
 });

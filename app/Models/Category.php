@@ -19,13 +19,13 @@ class Category extends Model
 
     public function categories()
     {
-        return $this->hasMany(Category::class);
+        return $this->hasMany(Category::class)->whereIn('status', [1, 2]);
         // return $this->hasMany(Category::class, 'parent_id', 'id');
     }
 
     public function childrenCategories()
     {
-        return $this->hasMany(Category::class)->with('categories');
+        return $this->hasMany(Category::class)->with('categories')->orderBy('id', 'DESC');
         // return $this->hasMany(Category::class, 'parent_id', 'id')->with('categories');
     }
 
